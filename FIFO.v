@@ -18,17 +18,20 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module FIFO(
-    input clk,
-    input reset,
-    input [7:0]buff_in,
-    output [7:0]buff_out,
-    input wr_en,
-    input rd_en,
-    output buf_empty,
-    output buf_full,
-    output[6:0] fifo_counter
-    );
+module FIFO(clk, reset, buf_in, buf_out, wr_en, rd_en, buf_empty, buf_full, fifo_counter);
+    
+    reg[3:0] rd_ptr;
+    reg[3:0] wr_ptr;
+    input [7:0]buf_in;
+    output reg [7:0]buf_out;
+    input clk;
+    input reset;
+    input wr_en;
+    input rd_en;
+    output reg buf_full;
+    output reg buf_empty;
+    output reg [6:0]fifo_counter;
+    reg[7:0] buf_mem[63:0];
     
     
 endmodule
