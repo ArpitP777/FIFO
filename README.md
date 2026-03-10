@@ -1,2 +1,2 @@
 # FIFO-Synchronous
-Designing a Synchronous FIFO in verilog HDL.
+Designing a single clock FIFO in verilog HDL.
