@@ -33,5 +33,26 @@ module FIFO(clk, reset, buf_in, buf_out, wr_en, rd_en, buf_empty, buf_full, fifo
     output reg [6:0]fifo_counter;
     reg[7:0] buf_mem[63:0];
     
+    always@(posedge clk or posedge reset) begin
+        if(reset)
+            fifo_counter <= 0;
+        else if((!buf_full && wr_en) && (!buf_empty && rd_en))
+            fifo_counter <= fifo_counter;
+        else if(!buf_full && wr_en)
+            fifo_counter <= fifo_counter+1;
+        else if(!buf_empty && rd_en)
+            fifo_counter <= fifo_counter-1;
+            else
+            fifo_counter <= fifo_counter;
+    end
+    
+    always@(posedge clk or posedge reset) begin
+        if(reset)
+            buf_out <= 0;
+        else if(rd_en && !buf_empty)
+            buf_out <= buf_mem[rd_ptr];
+        else
+        buf_out <= buf_out;
+    end
     
 endmodule
