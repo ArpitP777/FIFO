@@ -52,7 +52,7 @@ module FIFO(clk, reset, buf_in, buf_out, wr_en, rd_en, buf_empty, buf_full, fifo
         else if(rd_en && !buf_empty)
             buf_out <= buf_mem[rd_ptr];
         else
-        buf_out <= buf_out;
+            buf_out <= buf_out;
     end
     
     always@(posedge clk) begin
@@ -66,17 +66,17 @@ module FIFO(clk, reset, buf_in, buf_out, wr_en, rd_en, buf_empty, buf_full, fifo
         if(reset) begin
             wr_ptr <= 0;
             rd_ptr <= 0;
-            end
-        else begin
-        if(wr_en && !buf_full) begin
-            wr_ptr <= wr_ptr + 1;
-        end
-        if(rd_en && !buf_empty) begin
-            rd_ptr <= rd_ptr + 1;
         end
         else begin
-        rd_ptr <= rd_ptr;
-        wr_ptr <= wr_ptr;
+            if(wr_en && !buf_full) begin
+                wr_ptr <= wr_ptr + 1;
+        end
+            if(rd_en && !buf_empty) begin
+                rd_ptr <= rd_ptr + 1;
+        end
+            else begin
+                rd_ptr <= rd_ptr;
+                wr_ptr <= wr_ptr;
         end
         end
     end
