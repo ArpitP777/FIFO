@@ -9,7 +9,7 @@ The FIFO follows a First-In-First-Out data flow, where data written into the buf
 ## Features
 
 - 64 × 8 FIFO (64-depth, 8-bit data width)  
-- Single clock domain (synchronous design)  
+- Synchronous Design (Single Clock domain)
 - Circular buffer with pointer wrap-around  
 - Counter-based FIFO occupancy tracking  
 - `full` and `empty` flag generation  
